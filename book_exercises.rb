@@ -51,3 +51,55 @@ contacts = {"Joe Smith" => {}, "Sally Johnson" => {}}
 #    "Sally Johnson"=>{:email=>"sally@email.com", :address=>"404 Not Found Dr.",  :phone=>"123-234-3454"}
 #  }
 
+p "Exercise 11 & Exercise 16"
+
+def array_to_hash(array, new_hash)
+  array.each do |item|
+    if item =~ /email/
+      new_hash[:email] = item
+    elsif item =~ /-/
+      new_hash[:phone] = item
+    else
+      new_hash[:address] = item
+    end
+  end
+  return new_hash
+end
+
+def transform(m_d_array, hash)
+  m_d_array.each do |array|
+    if array[0] =~ /joe/
+      hash["Joe Smith"] = array_to_hash(array, {})
+    elsif array[0] =~ /sally/
+      hash["Sally Johnson"] = array_to_hash(array, {})
+    else
+      break
+    end
+  end
+  p hash
+end
+
+transform(contact_data, contacts)
+
+# Ex 12
+
+p contacts["Joe Smith"][:email]
+p contacts["Sally Johnson"][:phone]
+
+# 13
+
+arr = ['snow', 'winter', 'ice', 'slippery', 'salted roads', 'white trees']
+
+arr.delete_if { |item| item.start_with?("s") }
+
+arr = ['snow', 'winter', 'ice', 'slippery', 'salted roads', 'white trees']
+
+arr.delete_if { |item| item.start_with?("s", "w") }
+
+# 14
+
+a = ['white snow', 'winter wonderland', 'melting ice',
+     'slippery sidewalk', 'salted roads', 'white trees']
+
+two_d_array = a.map { |string| string.split(" ") }
+p two_d_array.flatten
